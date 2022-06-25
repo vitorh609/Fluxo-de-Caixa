@@ -6,68 +6,140 @@ public class Produtos {
     private int valorProduto;
     private int valorRecebido;
     private float troco;
-    public boolean escolha = true;
+    private boolean escolha = true;
+    private boolean escolha1;
     private int vendas = 0;
 
+
     public void cadastrarProduto(){
-        while (escolha == true) {
+        while (this.escolha == true) {
             this.nome = JOptionPane.showInputDialog("Digite o nome do produto");
             this.preco = JOptionPane.showInputDialog("Digite o preco");
-            int escolha1 = JOptionPane.showInternalConfirmDialog(null,
+            int dialogButton = JOptionPane.showInternalConfirmDialog(null,
                     "Deseja cadastar este produto?",
                     "CADASTRAR PRODUTO",
-                    JOptionPane.YES_NO_OPTION,
-                    0);
-            if (escolha1 == 1){
-                int escolha2 = JOptionPane.showInternalConfirmDialog(null,
-                        "Deseja cadastrar o produto novamente? ",
-                        "CADASTRO PRODUTO",
-                        JOptionPane.YES_NO_OPTION,
-                        0);
-                escolha = true;
-            }else {
-                escolha = false;
+                    JOptionPane.YES_NO_OPTION);
+            if (dialogButton == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Produto cadastrado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto nao cadastrado");
+            }
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja cadastar novo produto?",
+                    "",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.NO_OPTION){
+                this.escolha = false;
             }
         }
-        escolha = true;
+        setEscolha(true);
     }
 
-    public void venderProduto(){
-        while (escolha = true) {
+    public void venderProduto() {
+        while (getEscolha() == true) {
             String valor = JOptionPane.showInputDialog("Qual o valor do produto");
-            this.valorProduto = Integer.parseInt(valor);
+            setValorProduto(Integer.parseInt(valor));
             String valorR = JOptionPane.showInputDialog("Valor recebido");
-            this.valorRecebido = Integer.parseInt(valorR);
+            setValorRecebido(Integer.parseInt(valorR));
 
-            if (valorRecebido > valorProduto) {
+                if (getValorRecebido() > getValorProduto()) {
                 String msgtroco = "A devolver: ";
-                this.troco = valorProduto - valorRecebido;
+                setTroco(valorProduto - valorRecebido);
                 JOptionPane.showMessageDialog(null, msgtroco + troco);
-                int escolha1 = JOptionPane.showInternalConfirmDialog(null,
+                int dialogbutton = JOptionPane.showInternalConfirmDialog(null,
                         "Deseja concluir esta venda? ",
                         "CONFIRMACAO DE VENDA",
-                        JOptionPane.YES_NO_OPTION,
-                        0);
-                JOptionPane.showMessageDialog(null, "Venda confirmada");
-                if (escolha1 == 0){
-                    vendas = + 1;
-                }
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "O valor recebido nao pode ser menor que o valor do produto");
-            }
-            int escolha1 = JOptionPane.showInternalConfirmDialog(null,
-                    "Deseja realizar nova venda?",
-                    "",
-                    JOptionPane.YES_NO_OPTION,
-                    0);
-            if (escolha1 == 1){
-                escolha = false;
-            }else {
-                escolha = true;
-            }
+                            JOptionPane.YES_NO_OPTION);
+                    if (dialogbutton == JOptionPane.YES_OPTION)
+                    {
+                    setVendas(vendas + 1);
+                    JOptionPane.showMessageDialog(null, "Venda confirmada");
+                    }
+                    if (dialogbutton == JOptionPane.NO_OPTION){
+                    JOptionPane.showMessageDialog(null, "ERRO");
+                    }
 
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                    "O valor recebido nao pode ser menor que o valor do produto");
+                }
+                int confirm = JOptionPane.showConfirmDialog(null, "Deseja realizar uma nova venda",
+                    "",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.NO_OPTION){
+                setEscolha(false);
+            }
         }
-        escolha = true;
+    }
+    public int mostrarVendas(){
+        JOptionPane.showMessageDialog(null, getVendas());
+        return getVendas();
+    }
+
+    public String getPreco() {
+        return preco;
+    }
+
+    public void setPreco(String preco) {
+        this.preco = preco;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getValorProduto() {
+        return valorProduto;
+    }
+
+    public void setValorProduto(int valorProduto) {
+        this.valorProduto = valorProduto;
+    }
+
+    public int getValorRecebido() {
+        return valorRecebido;
+    }
+
+    public void setValorRecebido(int valorRecebido) {
+        this.valorRecebido = valorRecebido;
+    }
+
+    public float getTroco() {
+        return troco;
+    }
+
+    public void setTroco(float troco) {
+        this.troco = troco;
+    }
+
+    public boolean isEscolha() {
+        return escolha;
+    }
+
+    public void setEscolha(boolean escolha) {
+        this.escolha = escolha;
+    }
+    public boolean getEscolha() {
+        return escolha;
+    }
+
+
+    public boolean isEscolha1() {
+        return escolha1;
+    }
+
+    public void setEscolha1(boolean escolha1) {
+        this.escolha1 = escolha1;
+    }
+
+    public int getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(int vendas) {
+        this.vendas = vendas;
     }
 }
