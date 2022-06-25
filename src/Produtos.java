@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Produtos {
+public class Produtos implements Funcoes{
     private String preco;
     private String nome;
     private int valorProduto;
@@ -11,7 +11,7 @@ public class Produtos {
     private int vendas = 0;
 
 
-    public void cadastrarProduto(){
+    public void cadadastrarProduto() {
         while (this.escolha == true) {
             this.nome = JOptionPane.showInputDialog("Digite o nome do produto");
             this.preco = JOptionPane.showInputDialog("Digite o preco");
@@ -70,9 +70,13 @@ public class Produtos {
             }
         }
     }
-    public int mostrarVendas(){
-        JOptionPane.showMessageDialog(null, getVendas());
-        return getVendas();
+    public void mostrarVendas(){
+        if(getVendas() > 0){
+            JOptionPane.showMessageDialog(null, getVendas());
+        }else if (getVendas() == 0){
+            JOptionPane.showMessageDialog(null,
+                    "Você não realizou nenhuma venda");
+        }
     }
 
     public String getPreco() {
