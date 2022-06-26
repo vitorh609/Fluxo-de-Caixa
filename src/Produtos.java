@@ -9,12 +9,15 @@ public class Produtos implements Funcoes{
     private boolean escolha = true;
     private boolean escolha1;
     private int vendas = 0;
+    private int cont = 0;
 
+    String [] produto = new String[]{
+    };
 
     public void cadadastrarProduto() {
-        while (this.escolha == true) {
-            this.nome = JOptionPane.showInputDialog("Digite o nome do produto");
-            this.preco = JOptionPane.showInputDialog("Digite o preco");
+        while (escolha == true) {
+            setNome(JOptionPane.showInputDialog("Digite o nome do produto"));
+            setPreco(JOptionPane.showInputDialog("Digite o preco"));
             int dialogButton = JOptionPane.showInternalConfirmDialog(null,
                     "Deseja cadastar este produto?",
                     "CADASTRAR PRODUTO",
@@ -24,14 +27,16 @@ public class Produtos implements Funcoes{
             } else {
                 JOptionPane.showMessageDialog(null, "Produto nao cadastrado");
             }
-            int confirm = JOptionPane.showConfirmDialog(null, "Deseja cadastar novo produto?",
-                    "",
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Deseja cadastrar um novo produto? ",
+                    "Confrimação",
                     JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.NO_OPTION){
+            if (confirm == JOptionPane.YES_OPTION){
+                setEscolha(true);
+            }else if(confirm ==  JOptionPane.NO_OPTION){
                 this.escolha = false;
             }
         }
-        setEscolha(true);
     }
 
     public void venderProduto() {
@@ -77,6 +82,9 @@ public class Produtos implements Funcoes{
             JOptionPane.showMessageDialog(null,
                     "Você não realizou nenhuma venda");
         }
+    }
+    public void mostrarProdutos() {
+        JOptionPane.showMessageDialog(null, getNome());
     }
 
     public String getPreco() {
@@ -145,5 +153,13 @@ public class Produtos implements Funcoes{
 
     public void setVendas(int vendas) {
         this.vendas = vendas;
+    }
+
+    public int getCont() {
+        return cont;
+    }
+
+    public void setCont(int cont) {
+        this.cont = cont;
     }
 }
